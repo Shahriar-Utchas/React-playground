@@ -2,9 +2,9 @@ import { Suspense } from "react";
 import "./App.css";
 import Countries from "./Components/Countries/Countries";
 
-const CountriesPromise = fetch(
-  "https://restcountries.com/v3.1/all"
-).then((res) => res.json());
+const CountriesPromise = fetch("https://restcountries.com/v3.1/all").then(
+  (res) => res.json()
+);
 
 function App() {
   return (

@@ -1,6 +1,15 @@
-.country{
-    border: 1px solid #ccc;
-    border-radius: 20px;
-    padding:  20px;
-    height: 450px;
+.country {
+  border: 1px solid #ccc;
+  background-color: #32bbd6;
+  color: #000;
+  border-radius: 20px;
+  padding: 20px;
+  height: 450px;
+}
+.visited {
+  background-color: #42505d;
+  color: #fff;
+  border-radius: 20px;
+  padding: 20px;
+  height: 450px;
 }
