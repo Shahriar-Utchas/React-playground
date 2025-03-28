@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import "./App.css";
 import Bottles from "./components/Bottles/Bottles";
 
@@ -9,7 +10,9 @@ function App() {
   return (
     <>
       <h1> Awesome Water Bottles</h1>
-      <Bottles BottlesPromise={BottlesPromise}></Bottles>
+      <Suspense fallback={<h2>Loading...</h2>}>
+        <Bottles BottlesPromise={BottlesPromise}></Bottles>
+      </Suspense>
     </>
   );
 }
