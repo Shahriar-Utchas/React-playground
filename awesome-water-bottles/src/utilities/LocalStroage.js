@@ -21,9 +21,13 @@ const RemoveItemFromCartLocalStorage = (id) => {
   const remainingCart = cart.filter((storedId) => storedId !== id);
   setCartToLocalStorage(remainingCart);
 };
+const clearCartFromLocalStorage = () => {
+  localStorage.removeItem("cart");
+};
 
 export {
   getCartFromLocalStorage as getStoreCart,
   AddItemToCartLocalStorage as setToStoredCart,
   RemoveItemFromCartLocalStorage as removeFromCart,
+  clearCartFromLocalStorage as removeAllCart,
 };

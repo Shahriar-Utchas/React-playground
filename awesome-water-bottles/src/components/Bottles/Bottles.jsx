@@ -5,6 +5,7 @@ import {
   getStoreCart,
   setToStoredCart,
   removeFromCart,
+  removeAllCart,
 } from "../../utilities/LocalStroage";
 
 const Bottles = ({ BottlesPromise }) => {
@@ -23,6 +24,10 @@ const Bottles = ({ BottlesPromise }) => {
     removeFromCart(id);
     const remainingCart = cart.filter((bottle) => bottle.id !== id);
     setCart(remainingCart);
+  };
+  const handleClearCart = () => {
+    removeAllCart();
+    setCart([]);
   };
 
   //useEffect
@@ -45,7 +50,9 @@ const Bottles = ({ BottlesPromise }) => {
         <h2>Card items: {cart.length}</h2>
         <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
           <button>Show Cart items</button>
-          <button>Remove all items</button>
+          <button onClick={handleClearCart} disabled={cart.length === 0} >
+            Remove all cart items
+          </button>
         </div>
       </div>
       <div className="bottles-container">
