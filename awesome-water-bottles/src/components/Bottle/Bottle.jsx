@@ -1,15 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Bottle.css";
 
-const Bottle = ({ bottle, handleAddToCart, handleRemoveFromCart }) => {
-  const [isInCart, setIsInCart] = React.useState(false);
+const Bottle = ({ bottle, handleAddToCart, handleRemoveFromCart, cart }) => {
+  const [isInCart, setIsInCart] = useState(false);
 
   // Check if the bottle is in the cart when the component mounts
   useEffect(() => {
-    const cartItems = JSON.parse(localStorage.getItem("cart")) || [];
-    setIsInCart(cartItems.includes(bottle.id));
-  }, [bottle.id]);
-
+    setIsInCart(cart.some((item) => item.id === bottle.id));
+  }, [cart, bottle.id]);
   const handleCart = () => {
     if (isInCart) {
       setIsInCart(false);

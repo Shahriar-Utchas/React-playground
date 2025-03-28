@@ -1,6 +1,7 @@
 import React, { use, useState, useEffect } from "react";
 import Bottle from "../Bottle/Bottle";
 import "./Bottles.css";
+import Cart from "../cart/cart";
 import {
   getStoreCart,
   setToStoredCart,
@@ -11,6 +12,7 @@ import {
 const Bottles = ({ BottlesPromise }) => {
   const bottles = use(BottlesPromise);
   const [cart, setCart] = useState([]);
+  const [showCartComponent, setShowCartComponent] = useState(false);
 
   const handleAddToCart = (bottle) => {
     if (cart.includes(bottle)) {
@@ -43,28 +45,40 @@ const Bottles = ({ BottlesPromise }) => {
     }
     setCart(savedCart);
   }, [bottles]);
+  const handleCartBtnClick = () => {
+    setShowCartComponent(true);
+  };
 
   return (
     <>
       <div>
-        <h2>Card items: {cart.length}</h2>
+        <h2>Cart items: {cart.length}</h2>
         <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
-          <button>Show Cart items</button>
-          <button onClick={handleClearCart} disabled={cart.length === 0} >
+          <button onClick={handleCartBtnClick}>Show Cart items</button>
+          <button onClick={handleClearCart} disabled={cart.length === 0}>
             Remove all cart items
           </button>
         </div>
       </div>
-      <div className="bottles-container">
-        {bottles.map((bottle) => (
-          <Bottle
-            key={bottle.id}
-            bottle={bottle}
-            handleAddToCart={handleAddToCart}
-            handleRemoveFromCart={handleRemoveFromCart}
-          ></Bottle>
-        ))}
-      </div>
+      {showCartComponent ? (
+        <Cart
+          cart={cart}
+          handleRemoveFromCart={handleRemoveFromCart}
+          setShowCartComponent={setShowCartComponent}
+        ></Cart>
+      ) : (
+        <div className="bottles-container">
+          {bottles.map((bottle) => (
+            <Bottle
+              key={bottle.id}
+              bottle={bottle}
+              handleAddToCart={handleAddToCart}
+              handleRemoveFromCart={handleRemoveFromCart}
+              cart={cart}
+            ></Bottle>
+          ))}
+        </div>
+      )}
     </>
   );
 };
