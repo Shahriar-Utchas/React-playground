@@ -1,0 +1,1 @@
+- E-mail, password authentication using Firebase
