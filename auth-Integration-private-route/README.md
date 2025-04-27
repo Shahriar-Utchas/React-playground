@@ -1,0 +1,1 @@
+- Auth Integration with private route
